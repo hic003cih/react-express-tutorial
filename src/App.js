@@ -1,26 +1,31 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import CreateComponent from './components/CreateComponent';
+import EditComponent from './components/EditComponent';
+import IndexComponent from './components/IndexComponent';
 import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Router>
+        <div>
+          <h2>Welcome to React Express Tutorial</h2>
+          <ul>
+              <li><Link to={'/'}>Home</Link></li>
+              <li><Link to={'/'}>Create</Link></li>
+              <li><Link to={'/index'}>List</Link></li>
+              <li><Link to={'/edit/:id'}>Edit</Link></li>
+          </ul>
+          <hr />
+          <Switch>
+              <Route exact path='/create' component={CreateComponent} />
+              <Route path='/edit/:id' component={EditComponent} />
+              <Route path='/index' component={IndexComponent} />
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }
